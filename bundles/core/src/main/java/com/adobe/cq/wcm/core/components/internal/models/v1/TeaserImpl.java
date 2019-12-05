@@ -62,11 +62,13 @@ public class TeaserImpl extends AbstractImageDelegatingModel implements Teaser {
 
     public final static String RESOURCE_TYPE = "core/wcm/components/teaser/v1/teaser";
 
+    private String pretitle;
     private String title;
     private String description;
     private String linkURL;
     private String titleType;
     private boolean actionsEnabled = false;
+    private boolean pretitleHidden = false;
     private boolean titleHidden = false;
     private boolean descriptionHidden = false;
     private boolean imageLinkHidden = false;
@@ -126,6 +128,11 @@ public class TeaserImpl extends AbstractImageDelegatingModel implements Teaser {
             targetPage = pageManager.getPage(linkURL);
         }
 
+        if(pretitleHidden) {
+            pretitle = null;
+        } else {
+           properties.get(Teaser.PN_PRETTITLE, String.class);
+        }
         if (titleHidden) {
             title = null;
         } else {
@@ -179,6 +186,7 @@ public class TeaserImpl extends AbstractImageDelegatingModel implements Teaser {
     private void populateStyleProperties() {
         if (currentStyle != null) {
             titleHidden = currentStyle.get(Teaser.PN_TITLE_HIDDEN, titleHidden);
+            pretitleHidden = currentStyle.get(Teaser.PN_PRE_TTITLE_HIDDEN, pretitleHidden);
             descriptionHidden = currentStyle.get(Teaser.PN_DESCRIPTION_HIDDEN, descriptionHidden);
             titleType = currentStyle.get(Teaser.PN_TITLE_TYPE, titleType);
             imageLinkHidden = currentStyle.get(Teaser.PN_IMAGE_LINK_HIDDEN, imageLinkHidden);
@@ -243,9 +251,10 @@ public class TeaserImpl extends AbstractImageDelegatingModel implements Teaser {
     }
 
     @Override
-    public String getTitle() {
-        return title;
-    }
+    public String getPretitle() { return pretitle; }
+
+    @Override
+    public String getTitle() { return title; }
 
     @Override
     public boolean isTitleLinkHidden() {

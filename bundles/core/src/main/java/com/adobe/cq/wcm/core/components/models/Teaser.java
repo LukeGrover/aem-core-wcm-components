@@ -72,6 +72,13 @@ public interface Teaser extends ComponentExporter {
     String PN_IMAGE_LINK_HIDDEN = "imageLinkHidden";
 
     /**
+     * Name of the policy property that defines whether or not the pre title is hidden.
+     *
+     * @since com.adobe.cq.wcm.core.components.models 12.4.0
+     */
+    String PN_PRE_TTITLE_HIDDEN = "preTitleHidden";
+
+    /**
      * Name of the policy property that defines whether or not the title is hidden.
      *
      * @since com.adobe.cq.wcm.core.components.models 12.4.0
@@ -91,6 +98,12 @@ public interface Teaser extends ComponentExporter {
      * @since com.adobe.cq.wcm.core.components.models 12.4.0
      */
     String PN_TITLE_FROM_PAGE = "titleFromPage";
+    /**
+     * Name of the policy property that defines whether or not the pre title is hidden.
+     *
+     * @since com.adobe.cq.wcm.core.components.models 12.4.0
+     */
+    String PN_PRETTITLE = "pretitle";
 
     /**
      * Name of the policy property that defines whether or not the description is hidden.
@@ -161,6 +174,16 @@ public interface Teaser extends ComponentExporter {
      * @since com.adobe.cq.wcm.core.components.models 12.4.0
      */
     default boolean isImageLinkHidden() {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Returns this teaser's pre title, if one was defined.
+     *
+     * @return the teaser's pre title or {@code null}
+     * @since com.adobe.cq.wcm.core.components.models 12.4.0
+     */
+    default String getPretitle() {
         throw new UnsupportedOperationException();
     }
 
